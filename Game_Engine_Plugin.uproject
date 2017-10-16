@@ -1,0 +1,16 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "4.16",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "Game_Engine_Plugin",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	]
+}
