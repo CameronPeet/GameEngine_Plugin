@@ -2,22 +2,20 @@
 
 #pragma once
 
-#include "Classes/Components/BillboardComponent.h"
-
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ObjectSpawner.generated.h"
+#include "ObjectDestroyer.generated.h"
 
 UCLASS()
-class GAME_ENGINE_PLUGIN_API AObjectSpawner : public AActor
+class GAME_ENGINE_PLUGIN_API AObjectDestroyer : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AObjectSpawner();
-	void SpawnObject();
-	void SetActorToSpawn(AActor*);
+	AObjectDestroyer();
+	void DestroyObject();
+	void SetActorToDestroy(AActor*);
 
 protected:
 	// Called when the game starts or when spawned
@@ -28,12 +26,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functionality")
-	AActor* ActorToSpawn;
-
-	UPROPERTY()
-	// A UBillboardComponent to hold Icon sprite
-	UBillboardComponent* SpriteComponent;
-
-	// Icon sprite
-	UTexture2D* SpriteTexture;
+	AActor* ActorToDestroy;
+	
 };

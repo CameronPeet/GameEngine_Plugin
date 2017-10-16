@@ -65,6 +65,11 @@ void AObjectSpawner::SpawnObject()
 	Destroy();
 }
 
+void AObjectSpawner::SetActorToSpawn(AActor *_actorToSpawn)
+{
+	ActorToSpawn = _actorToSpawn;
+}
+
 // Called when the game starts or when spawned
 void AObjectSpawner::BeginPlay()
 {
