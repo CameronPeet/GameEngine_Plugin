@@ -80,6 +80,8 @@ void AZone::Tick(float DeltaTime)
 
 void AZone::UpdateZoneItems()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Updating zone items for: %s"), *this->GetName());
+
 	int HighestAlert = 0;
 
 	// Iterate over item struct array
@@ -94,6 +96,8 @@ void AZone::UpdateZoneItems()
 				// If the item is valid and is active
 				if ((*It2) && (*It2)->GetActiveState())
 				{
+					UE_LOG(LogTemp, Warning, TEXT("    %s: Active"), *(*It2)->GetName());
+
 					// Check its alert level
 					if ((*It2)->GetAlertLevel() >= HighestAlert)
 					{
@@ -108,6 +112,10 @@ void AZone::UpdateZoneItems()
 					{
 						EnemyRef->CheckForActiveZoneEvents();
 					}*/
+				}
+				else if (*It2)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("    %s: Not Active"), *(*It2)->GetName());
 				}
 			}
 		}

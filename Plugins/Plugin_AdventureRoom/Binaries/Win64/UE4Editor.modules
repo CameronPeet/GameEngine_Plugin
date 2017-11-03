@@ -1,9 +1,9 @@
 {
-	"Changelist" : 3561208,
+	"Changelist" : 3514769,
 	"CompatibleChangelist" : 3452394,
-	"BuildId" : "e4375421-a13d-487b-9d62-7914ec38c04a",
+	"BuildId" : "9d235d2e-0699-4a67-a724-267cd6977962",
 	"Modules" : 
 	{
-		"Plugin_AdventureRoom" : "UE4Editor-Plugin_AdventureRoom-1996.dll"
+		"Plugin_AdventureRoom" : "UE4Editor-Plugin_AdventureRoom.dll"
 	}
 }
