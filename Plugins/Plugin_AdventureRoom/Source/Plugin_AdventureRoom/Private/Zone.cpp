@@ -120,6 +120,12 @@ void AZone::UpdateZoneItems()
 			}
 		}
 	}
+
+	if (CurrentTarget)
+	{
+	
+		UE_LOG(LogTemp, Warning, TEXT("Current target in %s is %s, activated at %s"), *this->GetName(), *CurrentTarget->GetName(), *CurrentTarget->GetActorLocation().ToString());
+	}	
 }
 //bool AZone::IsEnemyInZone()
 //{
