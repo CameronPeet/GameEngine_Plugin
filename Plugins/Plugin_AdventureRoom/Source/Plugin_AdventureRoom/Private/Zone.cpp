@@ -107,11 +107,6 @@ void AZone::UpdateZoneItems()
 						CurrentTarget = (*It2);
 					}
 
-					// If enemy is currently in the zone, recheck for events
-				/*	if (EnemyInZone && EnemyRef)
-					{
-						EnemyRef->CheckForActiveZoneEvents();
-					}*/
 				}
 				else if (*It2)
 				{
@@ -127,10 +122,6 @@ void AZone::UpdateZoneItems()
 		UE_LOG(LogTemp, Warning, TEXT("Current target in %s is %s, activated at %s"), *this->GetName(), *CurrentTarget->GetName(), *CurrentTarget->GetActorLocation().ToString());
 	}	
 }
-//bool AZone::IsEnemyInZone()
-//{
-//	return EnemyInZone;
-//}
 
 bool AZone::GetHasItemToCheck()
 {
@@ -144,21 +135,12 @@ void AZone::SetHasItemToCheck(bool _b)
 
 void AZone::BeginActorOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
-	//EnemyRef = Cast<AEnemyCharacter>(OtherActor);
 
-	//if (EnemyRef)
-	//{
-	//	EnemyInZone = true;
-	//}
 }
 
 void AZone::EndActorOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
-	/*if (Cast<AEnemyCharacter>(OtherActor))
-	{
-		EnemyInZone = false;
-	}*/
-
+	
 }
 
 FVector AZone::GetItemLocation()
