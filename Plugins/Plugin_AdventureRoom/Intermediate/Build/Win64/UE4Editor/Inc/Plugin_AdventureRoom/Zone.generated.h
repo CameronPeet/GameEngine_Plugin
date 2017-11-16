@@ -14,12 +14,12 @@ class AActor;
 #endif
 #define PLUGIN_ADVENTUREROOM_Zone_generated_h
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_18_GENERATED_BODY \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_18_GENERATED_BODY \
 	friend PLUGIN_ADVENTUREROOM_API class UScriptStruct* Z_Construct_UScriptStruct_FItemStruct(); \
 	PLUGIN_ADVENTUREROOM_API static class UScriptStruct* StaticStruct();
 
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_RPC_WRAPPERS \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execEndActorOverlap) \
 	{ \
@@ -50,7 +50,7 @@ class AActor;
 	}
 
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execEndActorOverlap) \
 	{ \
@@ -81,7 +81,7 @@ class AActor;
 	}
 
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_INCLASS_NO_PURE_DECLS \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAZone(); \
 	friend PLUGIN_ADVENTUREROOM_API class UClass* Z_Construct_UClass_AZone(); \
@@ -91,7 +91,7 @@ public: \
 	enum {IsIntrinsic=COMPILED_IN_INTRINSIC};
 
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_INCLASS \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_INCLASS \
 private: \
 	static void StaticRegisterNativesAZone(); \
 	friend PLUGIN_ADVENTUREROOM_API class UClass* Z_Construct_UClass_AZone(); \
@@ -101,7 +101,7 @@ public: \
 	enum {IsIntrinsic=COMPILED_IN_INTRINSIC};
 
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_STANDARD_CONSTRUCTORS \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AZone(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AZone) \
@@ -114,7 +114,7 @@ private: \
 public:
 
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_ENHANCED_CONSTRUCTORS \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AZone(AZone&&); \
@@ -125,36 +125,36 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AZone); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AZone)
 
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_PRIVATE_PROPERTY_OFFSET \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__BoxComponent() { return STRUCT_OFFSET(AZone, BoxComponent); } \
 	FORCEINLINE static uint32 __PPO__BPsToTrack() { return STRUCT_OFFSET(AZone, BPsToTrack); }
 
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_31_PROLOG
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_GENERATED_BODY_LEGACY \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_31_PROLOG
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_PRIVATE_PROPERTY_OFFSET \
-	Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_RPC_WRAPPERS \
-	Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_INCLASS \
-	Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_STANDARD_CONSTRUCTORS \
+	Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_PRIVATE_PROPERTY_OFFSET \
+	Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_RPC_WRAPPERS \
+	Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_INCLASS \
+	Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_GENERATED_BODY \
+#define Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_PRIVATE_PROPERTY_OFFSET \
-	Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
-	Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_INCLASS_NO_PURE_DECLS \
-	Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_ENHANCED_CONSTRUCTORS \
+	Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_PRIVATE_PROPERTY_OFFSET \
+	Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
+	Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_INCLASS_NO_PURE_DECLS \
+	Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID Game_Engine_Plugin_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h
+#define CURRENT_FILE_ID Game_Engine_Plug_in_Plugins_Plugin_AdventureRoom_Source_Plugin_AdventureRoom_Public_Zone_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -11,6 +11,9 @@
 #ifndef PLUGIN_ADVENTUREROOM_TrackedObject_generated_h
 	#include "Public/TrackedObject.h"
 #endif
+#ifndef PLUGIN_ADVENTUREROOM_RoomTool_generated_h
+	#include "Public/RoomTool.h"
+#endif
 #ifndef PLUGIN_ADVENTUREROOM_Zone_generated_h
 	#include "Public/Zone.h"
 #endif

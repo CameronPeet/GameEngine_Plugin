@@ -1,3 +1,5 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
 #pragma once
 
 #include "CoreMinimal.h"
@@ -19,7 +21,7 @@ UENUM(BlueprintType)
 enum class EMeshDisplacement : uint8
 {
 	PositiveDisplacement UMETA(DisplayName = "PositiveDisplacement"),
-	NegativeDisplacement UMETA(DisplayName = "NegativeDisplacement"),
+	NegativeDisplacement UMETA(DisplayName = "NegativeDisplacement") ,
 	Centered UMETA(DisplayName = "Centered")
 };
 
@@ -28,7 +30,7 @@ struct FMeshInfo
 {
 	GENERATED_USTRUCT_BODY()
 
-		FMeshInfo() : Mesh(nullptr), MeshInstance(nullptr)
+	FMeshInfo() : Mesh(nullptr), MeshInstance(nullptr)
 	{
 
 	}
@@ -54,7 +56,7 @@ struct FRoomExtention
 {
 	GENERATED_USTRUCT_BODY()
 
-		FRoomExtention() : WallInfo(), DoorInfo()
+	FRoomExtention() : WallInfo(), DoorInfo()
 	{
 
 	}
@@ -80,8 +82,8 @@ UCLASS(Blueprintable)
 class PLUGIN_ADVENTUREROOM_API ARoomTool : public AActor
 {
 	GENERATED_BODY()
-
-public:
+	
+public:	
 	// Sets default values for this actor's properties
 	ARoomTool();
 
@@ -89,7 +91,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:
+public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -101,17 +103,26 @@ public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Instances")
 		UInstancedStaticMeshComponent* WallInstances;
 
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Instances", meta = (EditCondition = bUseCornerPieces))
+		UInstancedStaticMeshComponent* CornerPieceInstances;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Settings", meta = (EditCondition = bUseCornerPieces))
+		bool bUseCornerPieceToHideSeams;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Settings")
+		bool bUseCornerPieces;
+
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Instances")
 		UInstancedStaticMeshComponent* ExtentionDoorInstances;
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Instances")
 		UInstancedStaticMeshComponent* ExtentionWallInstances;
 
-
+	
 	UFUNCTION(BlueprintCallable, Category = "Generation")
 		FMeshInfo GenerateMeshInfo(UStaticMesh* mesh);
 
 	UFUNCTION(BlueprintCallable, Category = "Generation")
-		FMeshInfo GetWallInfo() const;
+	FMeshInfo GetWallInfo() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Generation")
 		void CreateBoundingBox();
@@ -129,12 +140,13 @@ public:
 		void AddExtentions();
 
 	UFUNCTION(BlueprintCallable, Category = "Generation")
+		void AddCornerPieces();
+
+	UFUNCTION(BlueprintCallable, Category = "Generation")
 		void ConvertToStaticMeshActors();
 
 	UFUNCTION(BlueprintCallable, Category = "Generation")
 		void SetMobility_Movable(AStaticMeshActor* mesh);
-
-	virtual void PostEditChangeProperty(FPropertyChangedEvent & PropertyChangedEvent);
 
 	void PostEdit_DoorLocation();
 
@@ -152,11 +164,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Settings|Meshes")
 		FMeshInfo WallInfo;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Settings|Meshes")
+		FMeshInfo CornerPieceInfo;
+
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Settings|Size", meta = (ClampMin = 0))
 		int Width;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Settings|Size", meta = (ClampMin = 0))
 		int Length;
+
+	UPROPERTY(EditInstanceOnly, Category = "Settings|Size")
+		bool FlipWalls;
 
 
 	//UPROPERTY(EditDefaultsOnly, Category = "Settings|Options")
@@ -187,9 +205,10 @@ public:
 
 	//
 
+	virtual void PostEditChangeProperty(FPropertyChangedEvent & PropertyChangedEvent);
+
 private:
 
-
-
+	
+	
 };
-

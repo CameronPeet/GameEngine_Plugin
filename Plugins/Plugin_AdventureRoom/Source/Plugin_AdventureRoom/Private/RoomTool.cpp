@@ -6,7 +6,7 @@
 // Sets default values
 ARoomTool::ARoomTool()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	Root = CreateDefaultSubobject<USceneComponent>(FName("RootComponent"));
@@ -15,6 +15,9 @@ ARoomTool::ARoomTool()
 	//Initialise the InstanceStaticMeshComponent and attach to root
 	WallInstances = CreateDefaultSubobject<UInstancedStaticMeshComponent>(FName("WallInstance"));
 	WallInstances->AttachTo(GetRootComponent());
+
+	CornerPieceInstances = CreateDefaultSubobject<UInstancedStaticMeshComponent>(FName("CornerPieceInstance"));
+	CornerPieceInstances->AttachTo(GetRootComponent());
 
 	DoorInstances = CreateDefaultSubobject<UInstancedStaticMeshComponent>(FName("DoorInstances"));
 	DoorInstances->AttachTo(GetRootComponent());
@@ -32,7 +35,7 @@ ARoomTool::ARoomTool()
 void ARoomTool::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 }
 
 // Called every frame
@@ -62,7 +65,7 @@ FMeshInfo ARoomTool::GenerateMeshInfo(UStaticMesh* Mesh)
 	//UE_LOG(LogTemp, Warning, TEXT("NegativeBounds : %s "), *MeshBox.Max.ToString())
 
 	float X = 0;
-	float Y = 0;
+	float Y = 0; 
 	EMeshDisplacement displacement;
 	float LengthOfLongestSide = 0.0f;
 
@@ -72,7 +75,7 @@ FMeshInfo ARoomTool::GenerateMeshInfo(UStaticMesh* Mesh)
 		displacement = EMeshDisplacement::Centered;
 		UE_LOG(LogTemp, Warning, TEXT("Object pivot is centered"))
 
-			X = fabs(MeshBox.Max.X);
+		X = fabs(MeshBox.Max.X);
 		Y = fabs(MeshBox.Max.Y);
 
 	}
@@ -80,16 +83,16 @@ FMeshInfo ARoomTool::GenerateMeshInfo(UStaticMesh* Mesh)
 	{
 		displacement = EMeshDisplacement::PositiveDisplacement;
 		UE_LOG(LogTemp, Warning, TEXT("Object pivot is Positive"))
-			X = fabs(MeshBox.Max.X);
+		X = fabs(MeshBox.Max.X);
 		Y = fabs(MeshBox.Max.Y);
-
+		
 	}
 	else
 	{
 		displacement = EMeshDisplacement::NegativeDisplacement;
 		UE_LOG(LogTemp, Warning, TEXT("Object pivot is Negative"))
 
-			X = fabs(MeshBox.Min.X);
+		X = fabs(MeshBox.Min.X);
 		Y = fabs(MeshBox.Min.Y);
 	}
 
@@ -167,6 +170,9 @@ void ARoomTool::AddWall()
 	WallInstances->SetStaticMesh(WallInfo.Mesh);
 	WallInstances->SetWorldLocation(GetRootComponent()->GetRelativeTransform().GetLocation());
 
+	int flip = FlipWalls ? 1 : -1;
+	int flipWalls = FlipWalls ? 0 : 1;
+
 	for (int i = 0; i < Width; i++)
 	{
 		FTransform transform = FTransform();
@@ -179,29 +185,107 @@ void ARoomTool::AddWall()
 	for (int i = 0; i < Length; i++)
 	{
 		FTransform transform = FTransform();
-		FRotator rotation = FRotator(0.0f, 90.0f, 0.0f);
+		FRotator rotation = FRotator(0.0f, 90.0f * flip, 0.0f);
 		transform.SetRotation(rotation.Quaternion());
-		transform.SetLocation(WallInfo.LengthVector * i + WallInfo.WidthVector * Width);
+		transform.SetLocation(WallInfo.LengthVector * i + (WallInfo.WidthVector * Width) - ((WallInfo.LengthVector * flip) * flipWalls));
 		WallInstances->AddInstance(transform);
 	}
 
 	for (int i = Width - 1; i >= 0; i--)
 	{
 		FTransform transform = FTransform();
-		transform.SetLocation(WallInfo.LengthVector * Length + WallInfo.WidthVector * i);
+		FRotator rotation = FRotator(0.0f, (180.0f * flipWalls), 0.0f);
+		transform.SetRotation(rotation.Quaternion());
+		transform.SetLocation(WallInfo.LengthVector * Length + WallInfo.WidthVector * i - ((WallInfo.WidthVector * flip) * flipWalls));
 		WallInstances->AddInstance(transform);
 	}
 
 	for (int i = Length - 1; i >= 0; i--)
 	{
 		FTransform transform = FTransform();
-		FRotator rotation = FRotator(0.0f, 90.0f, 0.0f);
+		FRotator rotation = FRotator(0.0f, -90.0f * flip, 0.0f);
 		transform.SetRotation(rotation.Quaternion());
-		transform.SetLocation(WallInfo.LengthVector * i);
+		transform.SetLocation(WallInfo.LengthVector * i + (WallInfo.LengthVector * flip) + (WallInfo.LengthVector * flipWalls));
 		WallInstances->AddInstance(transform);
 	}
 
 
+}
+
+void ARoomTool::AddCornerPieces()
+{
+	CornerPieceInstances->ClearInstances();
+	CornerPieceInstances->SetStaticMesh(CornerPieceInfo.Mesh);
+	CornerPieceInstances->SetWorldLocation(GetRootComponent()->GetRelativeTransform().GetLocation());
+
+	//FTransform transform;
+	//int index = 0;
+	//do
+	//{
+	//	transform.SetLocation(transform.GetLocation() + CornerPieceInfo.WidthVector / 2.0f);
+	//	transform.SetRotation(transform.GetRotation());
+	//	CornerPieceInstances->AddInstance(transform);
+	//	index++;
+	//} while (WallInstances->GetInstanceTransform(index, transform, true));
+
+	if (bUseCornerPieces && !bUseCornerPieceToHideSeams)
+	{
+		FTransform transform = FTransform();
+		transform.SetLocation(WallInfo.WidthVector * 0);
+		CornerPieceInstances->AddInstance(transform);
+
+		FRotator rotation = FRotator(0.0f, 90.0f, 0.0f);
+		transform.SetRotation(rotation.Quaternion());
+		transform.SetLocation(WallInfo.WidthVector * Width);
+		CornerPieceInstances->AddInstance(transform);
+
+		transform.SetLocation(WallInfo.LengthVector * Length + WallInfo.WidthVector * Width);
+		CornerPieceInstances->AddInstance(transform);
+
+		rotation = FRotator(0.0f, 90.0f, 0.0f);
+		transform.SetRotation(rotation.Quaternion());
+		transform.SetLocation(WallInfo.LengthVector * Length);
+		CornerPieceInstances->AddInstance(transform);
+	}
+
+	else if (bUseCornerPieceToHideSeams)
+	{
+		for (int i = 0; i < Width; i++)
+		{
+			FTransform transform = FTransform();
+			transform.SetLocation(WallInfo.WidthVector * i);
+			CornerPieceInstances->AddInstance(transform);
+		}
+
+
+
+		for (int i = 0; i < Length; i++)
+		{
+			FTransform transform = FTransform();
+			FRotator rotation = FRotator(0.0f, 90.0f, 0.0f);
+			transform.SetRotation(rotation.Quaternion());
+			transform.SetLocation(WallInfo.LengthVector * i + WallInfo.WidthVector * Width);
+			CornerPieceInstances->AddInstance(transform);
+		}
+
+		for (int i = Width - 1; i >= 0; i--)
+		{
+			FTransform transform = FTransform();
+			transform.SetLocation(WallInfo.LengthVector * Length + WallInfo.WidthVector * i);
+			CornerPieceInstances->AddInstance(transform);
+		}
+
+		for (int i = Length - 1; i >= 0; i--)
+		{
+			FTransform transform = FTransform();
+			FRotator rotation = FRotator(0.0f, 90.0f, 0.0f);
+			transform.SetRotation(rotation.Quaternion());
+			transform.SetLocation(WallInfo.LengthVector * i);
+			CornerPieceInstances->AddInstance(transform);
+		}
+
+	}
+	
 }
 
 void ARoomTool::AddDoors()
@@ -230,7 +314,7 @@ void ARoomTool::AddDoors()
 			DoorInstances->AddInstance(transform);
 		}
 	}
-
+	
 }
 
 void ARoomTool::AddExtentions()
@@ -356,6 +440,7 @@ void ARoomTool::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyCha
 
 
 
+
 void ARoomTool::PostEdit_DoorLocation()
 {
 
@@ -418,6 +503,7 @@ void ARoomTool::PostEdit_DoorLocation()
 	//	}
 	//}
 }
+
 
 void ARoomTool::SetMobility_Movable(AStaticMeshActor* mesh)
 {
