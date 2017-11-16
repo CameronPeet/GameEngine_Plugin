@@ -34,10 +34,8 @@ class PLUGIN_ADVENTUREROOM_API AZone : public AActor
 	GENERATED_BODY()
 
 	bool HasItemToCheck;
-	//bool EnemyInZone;
 	FVector ItemLocation;
 
-	//AEnemyCharacter* EnemyRef;
 
 	ATrackedObject* CurrentTarget;
 
@@ -63,8 +61,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void UpdateZoneItems();
-
-	//bool IsEnemyInZone();
 
 	bool GetHasItemToCheck();
 	void SetHasItemToCheck(bool _b);
